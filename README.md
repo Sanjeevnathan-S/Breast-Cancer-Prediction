@@ -5,3 +5,8 @@ Deployed frontend link: https://breast-cancer-prediction-durgjwwmuzku4hjxm8faqf.
 
 
 Deployed api link: https://breast-cancer-api-st6j.onrender.com/
+
+
+
+CLONE REPO
+git clone https://github.com/Sanjeevnathan-S/Breast-Cancer-Prediction.git
