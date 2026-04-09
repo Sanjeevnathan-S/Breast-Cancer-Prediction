@@ -155,7 +155,7 @@ if st.button("Predict"):
                     # ---- PROGRESS BAR ----
             st.progress(result['confidence'])
 
-            # ---- EXTRA VISUAL (PERCENT) ----
+            
             st.markdown(f"### Confidence: {result['confidence']*100:.2f}%")
         else:
             st.error("API Error")
