@@ -69,8 +69,8 @@ malignant_sample = {
 }
 
 
-# ---- BORDERLINE SAMPLE ----
-borderline_sample = {
+# ---- INTERMEDIATE SAMPLE ----
+intermediate_sample = {
     "radius_mean": 14.5,
     "texture_mean": 21.0,
     "perimeter_mean": 95.0,
@@ -148,8 +148,8 @@ with col2:
         st.session_state.data = malignant_sample
 
 with col3:
-    if st.button("BorderLine"):
-        st.session_state.data=borderline_sample
+    if st.button("Intermediate Case"):
+        st.session_state.data=intermediate_sample
 with col4:
     if st.button("Random"):
         st.session_state.data=generate_random_sample()
@@ -248,8 +248,10 @@ if st.button("Predict"):
                     # ---- PROGRESS BAR ----
             st.progress(result['confidence'])
 
-            
             st.markdown(f"### Confidence: {result['confidence']*100:.2f}%")
+
+            if result['confidence']<0.7:
+                st.warning('Model is uncertain about this  prediction')
         else:
             st.error("API Error")
 
