@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import random
 
 st.set_page_config(page_title="Breast Cancer Prediction", layout="wide")
 
@@ -49,8 +50,76 @@ malignant_sample = {
     "symmetry_worst": 0.4, "fractal_dimension_worst": 0.1
 }
 
+
+# ---- BORDERLINE SAMPLE ----
+borderline_sample = {
+    "radius_mean": 14.5,
+    "texture_mean": 21.0,
+    "perimeter_mean": 95.0,
+    "area_mean": 650.0,
+    "smoothness_mean": 0.10,
+    "compactness_mean": 0.12,
+    "concavity_mean": 0.10,
+    "concave points_mean": 0.06,
+    "symmetry_mean": 0.22,
+
+    "radius_se": 0.5,
+    "perimeter_se": 3.5,
+    "area_se": 45.0,
+    "compactness_se": 0.02,
+    "concavity_se": 0.03,
+    "concave points_se": 0.02,
+    "symmetry_se": 0.02,
+    "fractal_dimension_se": 0.004,
+
+    "radius_worst": 17.0,
+    "texture_worst": 25.0,
+    "perimeter_worst": 110.0,
+    "area_worst": 900.0,
+    "smoothness_worst": 0.14,
+    "compactness_worst": 0.25,
+    "concavity_worst": 0.30,
+    "concave points_worst": 0.12,
+    "symmetry_worst": 0.30,
+    "fractal_dimension_worst": 0.08
+}
+
+# ---- RANDOM SAMPLE ----
+def generate_random_sample():
+    return {
+        "radius_mean": random.uniform(10, 20),
+        "texture_mean": random.uniform(10, 30),
+        "perimeter_mean": random.uniform(70, 130),
+        "area_mean": random.uniform(400, 1200),
+        "smoothness_mean": random.uniform(0.08, 0.15),
+        "compactness_mean": random.uniform(0.05, 0.4),
+        "concavity_mean": random.uniform(0.0, 0.5),
+        "concave points_mean": random.uniform(0.0, 0.3),
+        "symmetry_mean": random.uniform(0.15, 0.35),
+
+        "radius_se": random.uniform(0.1, 1.5),
+        "perimeter_se": random.uniform(1, 10),
+        "area_se": random.uniform(10, 200),
+        "compactness_se": random.uniform(0.005, 0.05),
+        "concavity_se": random.uniform(0.005, 0.1),
+        "concave points_se": random.uniform(0.005, 0.05),
+        "symmetry_se": random.uniform(0.01, 0.05),
+        "fractal_dimension_se": random.uniform(0.001, 0.01),
+
+        "radius_worst": random.uniform(12, 25),
+        "texture_worst": random.uniform(15, 35),
+        "perimeter_worst": random.uniform(80, 170),
+        "area_worst": random.uniform(500, 2000),
+        "smoothness_worst": random.uniform(0.1, 0.2),
+        "compactness_worst": random.uniform(0.1, 0.6),
+        "concavity_worst": random.uniform(0.0, 0.7),
+        "concave points_worst": random.uniform(0.0, 0.4),
+        "symmetry_worst": random.uniform(0.2, 0.5),
+        "fractal_dimension_worst": random.uniform(0.05, 0.15)
+    }
+
 # ---- BUTTONS ----
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 , col4 , col5 = st.columns(5)
 
 with col1:
     if st.button("Load Benign"):
@@ -61,6 +130,12 @@ with col2:
         st.session_state.data = malignant_sample
 
 with col3:
+    if st.button("BorderLine"):
+        st.session_state.data=borderline_sample
+with col4:
+    if st.button("Random"):
+        st.session_state.data=generate_random_sample()
+with col5:
     if st.button("Clear"):
         st.session_state.data = {}
 
