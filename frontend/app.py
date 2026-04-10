@@ -7,6 +7,24 @@ st.set_page_config(page_title="Breast Cancer Prediction", layout="wide")
 st.title("Breast Cancer Prediction System")
 st.subheader("Enter Feature Values")
 
+st.markdown("""
+<style>
+    .main {
+        background-color: #0E1117;
+        color: white;
+    }
+    .stButton>button {
+        border-radius: 10px;
+        height: 3em;
+        width: 100%;
+        font-size: 16px;
+    }
+    .stNumberInput input {
+        border-radius: 8px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # ---- SESSION STATE ----
 if "data" not in st.session_state:
     st.session_state.data = {}
